@@ -1,5 +1,6 @@
 from flask import request
 from app import app
+from HTMLParser import HTMLParser
 
 
 @app.route('/')
@@ -11,5 +12,7 @@ def index():
 @app.route('/search')
 def search():
     term = request.args.get('term')
-    # TODO: Call HTML parser
-    return "Are you looking for " + term + " ?"
+    parser = HTMLParser()
+    result = parser.parse(term)
+
+    return result
